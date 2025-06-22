@@ -1,13 +1,17 @@
 import { Module } from '@nestjs/common';
-import { ApiGatewayController } from './api-gateway.controller';
-import { ApiGatewayService } from './api-gateway.service';
 import { OrderModule } from '@app/order';
 import { VendorModule } from '@app/vendor';
 import { DatabaseModule } from '@app/database';
+import { QueueModule } from '@app/queue';
+import { CommonModule } from '@app/common';
 
 @Module({
-    imports: [OrderModule, VendorModule, DatabaseModule],
-  controllers: [ApiGatewayController],
-  providers: [ApiGatewayService],
+  imports: [
+    OrderModule,
+    VendorModule,
+    DatabaseModule,
+    QueueModule,
+    CommonModule,
+  ],
 })
-export class ApiGatewayModule {}
+export class ApiGatewayModule { }
