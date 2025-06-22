@@ -25,7 +25,7 @@ services:
 
   order-rabbitmq:
     image: rabbitmq:3-management
-    container_name: rabbitmq
+    container_name: order-rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -47,13 +47,14 @@ services:
     environment:
       NODE_PORT: 3000
       SWAGGER_ENABLED: true
+      TYPEORM_SYNC : true
       GLOBAL_PRESET: 'v1/api'
-      DB_HOST: postgres
+      DB_HOST: order-postgres
       DB_PORT: 5432
       DB_USERNAME: postgres
       DB_PASSWORD: postgres
       DB_NAME: order_db
-      RABBITMQ_URL: amqp://rabbitmq:5672
+      RABBITMQ_URL: amqp://order-rabbitmq:5672
     volumes:
       - .:/app
       - /app/node_modules
@@ -74,12 +75,13 @@ services:
     environment:
       SWAGGER_ENABLED: true
       GLOBAL_PRESET: 'v1/api'
-      DB_HOST: postgres
+      TYPEORM_SYNC : true
+      DB_HOST: order-postgres
       DB_PORT: 5432
       DB_USERNAME: postgres
       DB_PASSWORD: postgres
       DB_NAME: order_db
-      RABBITMQ_URL: amqp://rabbitmq:5672
+      RABBITMQ_URL: amqp://order-rabbitmq:5672
     volumes:
       - .:/app
       - /app/node_modules  
