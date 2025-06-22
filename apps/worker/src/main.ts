@@ -1,8 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { WorkerModule } from './worker.module';
+import { WorkerService } from './worker.service';
 
 async function bootstrap() {
-  await NestFactory.create(WorkerModule);
-  console.log(`Order Worker started and ready to consume messages`)
+  const app = await NestFactory.create(WorkerModule);
+
+
+  app.get(WorkerService);
+
+  console.log('Order Worker started and ready to consume messages');
 }
 bootstrap();
