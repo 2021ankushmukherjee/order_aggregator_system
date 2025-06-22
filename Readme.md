@@ -73,12 +73,16 @@ docker compose up -d order-api-gateway order-worker
 http://localhost:3000/v1/api/swagger
 ```
 
-📌 Notes
-Uses Docker volumes for persistent PostgreSQL and RabbitMQ data
+---
 
-Configuration is handled via environment variables (see docker-compose.yml)
 
-Seed data and sync logic available under libs/vendor/src/seeds
+### 📌 Notes
 
-Vendor stock sync and mock data handled in service layer
+- Uses Docker volumes for persistent PostgreSQL and RabbitMQ data
+
+- Configuration is handled via environment variables (see docker-compose.yml)
+
+- Seed data and sync logic available under libs/vendor/src/seeds
+
+- Vendor stock sync and mock data handled in service layer
 
