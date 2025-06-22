@@ -1,0 +1,101 @@
+services:
+  
+  order-pgadmin:
+    extends:
+      file: ./docker-compose.tools.yaml
+      service: order-pgadmin
+    networks:
+     - app_network
+
+
+  order-postgres:
+    image: postgres:16-alpine
+    container_name: order-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: order_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - .data/postgres:/var/lib/postgresql/data
+    networks:
+      - app_network
+
+
+  order-rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ./.data/rabbitmq:/var/lib/rabbitmq
+    networks:
+      - app_network
+
+
+
+  order-api-gateway:
+    build:
+      context: .
+      dockerfile: apps/api-gateway/Dockerfile
+      target: development
+    container_name: order-api-gateway
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_PORT: 3000
+      SWAGGER_ENABLED: true
+      GLOBAL_PRESET: 'v1/api'
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: order_db
+      RABBITMQ_URL: amqp://rabbitmq:5672
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - order-postgres
+      - order-rabbitmq
+    networks:
+      - app_network
+
+
+
+  order-worker:
+    build:
+      context: .
+      dockerfile: apps/worker/Dockerfile
+      target: development
+    container_name: order-worker
+    environment:
+      SWAGGER_ENABLED: true
+      GLOBAL_PRESET: 'v1/api'
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: order_db
+      RABBITMQ_URL: amqp://rabbitmq:5672
+    volumes:
+      - .:/app
+      - /app/node_modules  
+    depends_on:
+      - order-postgres
+      - order-rabbitmq
+    networks:
+      - app_network
+
+
+volumes:
+  postgres:
+  rabbitmq:
+
+
+networks:
+  app_network:
+    driver: bridge
+
