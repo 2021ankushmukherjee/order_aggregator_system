@@ -2,6 +2,19 @@
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
   "sourceRoot": "apps/order_aggregator_system/src",
+    "watchOptions": {
+    "ignored": [
+      "**/*.js",
+      "**/*.d.ts",
+      "dist",
+      "node_modules",
+      ".git",
+      ".vscode",
+      ".env*",
+      ".data",
+      "logs"
+    ]
+  },
   "compilerOptions": {
     "deleteOutDir": true,
     "webpack": true,
