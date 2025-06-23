@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { CreateOrderRequestDto } from './dto/create-order-request.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
@@ -16,7 +16,7 @@ export class OrderController {
     }
 
     @ApiOperation({ summary: 'Get all orders' })
-    @Post('all')
+    @Get('all')
     async get() {
         return this.orderService.getOrders();
     }

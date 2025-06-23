@@ -8,7 +8,7 @@ export class MockVendorController {
     constructor(private readonly vendorService: VendorService) { }
     
     @ApiOperation({ summary: 'Sync stock from vendors' })
-    @Post('stock/sync')
+    @Get('stock/sync')
     async sync() {
         return this.vendorService.syncStockFromVendors();
     }

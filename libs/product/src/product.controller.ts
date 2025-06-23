@@ -10,8 +10,8 @@ export class ProductController {
         private readonly productService: ProductService
     ) { }
 
-    @ApiOperation({ summary: 'Fetch all products with stock' })
-    @Get('all')
+    @ApiOperation({ summary: 'Fetch all products with stock quantity' })
+    @Get('/stock')
     getProducts() {
         return this.productService.getProductsWithStock();
     }
