@@ -1,8 +1,8 @@
 import { Controller, Get } from "@nestjs/common";
 import { ProductService } from "./product.service";
-import { ApiOperation } from "@nestjs/swagger";
+import { ApiOperation, ApiTags } from "@nestjs/swagger";
 
-
+@ApiTags('PRODUCT')
 @Controller('product')
 export class ProductController {
 
