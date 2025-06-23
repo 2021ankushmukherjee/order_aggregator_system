@@ -36,6 +36,12 @@
       "@app/order/*": [
         "libs/order/src/*"
       ],
+      "@app/product": [
+        "libs/product/src"
+      ],
+      "@app/product/*": [
+        "libs/product/src/*"
+      ],
       "@app/queue": [
         "libs/queue/src"
       ],
