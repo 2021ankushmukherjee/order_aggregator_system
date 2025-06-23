@@ -20,15 +20,26 @@ This system is a **Distributed Order Aggregator** built using NestJS, PostgreSQL
 - Aggregates total product stock centrally for user queries
 
 ### 📦 Product Stock
-- `/stock` — View current product stock from all vendors
-- `/vendor-stock` — View vendor-wise stock breakdown
+- `GET product/stock` — View current product stock from all vendors
+
 
 ### 🛒 Order API
-- `POST /order`
+- `POST /order/create`
   - Takes product ID and quantity
   - Validates and reserves stock
   - Publishes order to RabbitMQ queue
   - Prevents double selling using atomic transactions
+
+- `GET /order/all` - View all past order records
+
+
+
+### 📦 Vendor Stock
+- `GET vendor/stock/sync` — Sync stock from all vendors
+- `GET vendor/stock` — View vendor-wise stock breakdown
+- `GET vendor/:vendor/stock` — View a single vendor stock
+
+
 
 ### ⚙️ Order Worker
 - Subscribes to `order_queue`
