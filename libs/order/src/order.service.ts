@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DataSource, QueryRunner } from 'typeorm';
 import { StockEntity } from '@app/database/entities/stock.entity';
@@ -50,7 +50,7 @@ export class OrderService {
                 await dbTransaction.commitTransaction();
             }
 
-            return { success: true, orderId: order.id };
+            return { message: 'Order created successfully', orderId: order.id, httpStatus: HttpStatus.CREATED };
 
 
         } catch (error) {
