@@ -27,8 +27,6 @@ async function bootstrap() {
       .setDescription('REST APIs for order placement and stock sync')
       .setVersion('1.0')
       .addBearerAuth()
-      .addTag('Order')
-      .addTag('Vendor')
       .build();
 
     const document = SwaggerModule.createDocument(app, config);
