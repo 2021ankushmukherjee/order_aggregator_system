@@ -61,24 +61,35 @@ This system is a **Distributed Order Aggregator** built using NestJS, PostgreSQL
 
 ## 🐳 Run With Docker
 
-### 1️⃣ Start pgAdmin (Optional)
+
+### Start pgAdmin (Optional)
 ```bash
 docker compose up -d order-pgadmin
 ```
 
-### 2️⃣ Build Backend Services
+### Start Postgres Database
+```bash
+docker compose up -d order-postgres
+```
+
+### Start Rabbitmq Service
+```bash
+docker compose up -d order-rabbitmq
+```
+
+### Build Backend Services
 
 ```bash
 docker compose build order-api-gateway order-worker
 ```
 
-### 3️⃣ Run API Gateway and Worker
+### Run API Gateway and Worker
 
 ```bash
 docker compose up -d order-api-gateway order-worker
 ```
 
-### 4️⃣ Open Swagger Docs
+### Open Swagger Docs
 
 ```bash
 http://localhost:3000/v1/api/swagger
