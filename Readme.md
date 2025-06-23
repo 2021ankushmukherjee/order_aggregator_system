@@ -4,7 +4,7 @@
 
 This system is a **Distributed Order Aggregator** built using NestJS, PostgreSQL, and RabbitMQ.
 
-- Syncs product stock from multiple vendors (mocked or seeded)
+- Syncs product stock from multiple vendors
 - Aggregates and manages stock centrally
 - Accepts product orders
 - Deducts stock atomically from both central and vendor sources
