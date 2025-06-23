@@ -1,7 +1,7 @@
 import { ProductEntity } from '@app/database/entities/product.entity';
 import { StockEntity } from '@app/database/entities/stock.entity';
 import { VendorStockEntity } from '@app/database/entities/vendor-stock.entity';
-import { BadGatewayException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { BadGatewayException, HttpStatus, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -42,7 +42,7 @@ export class VendorService {
 
             await Promise.all(updates);
 
-            return { success: true, updatedProducts: productStockMap.size };
+            return { message: 'Stock synced successfully', httpStatus: HttpStatus.OK };
 
         } catch (error) {
             console.log(error);
