@@ -1,7 +1,8 @@
 import { Controller, Get, Param, Post } from '@nestjs/common';
 import { VendorService } from './vendor.service';
-import { ApiOperation, ApiParam } from '@nestjs/swagger';
+import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('VENDOR')
 @Controller('vendor')
 export class MockVendorController {
     constructor(private readonly vendorService: VendorService) { }
