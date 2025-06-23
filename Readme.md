@@ -41,6 +41,12 @@ This system is a **Distributed Order Aggregator** built using NestJS, PostgreSQL
 
 
 
+### 📦 Reset
+- `GET common/reset` — Reset system data
+
+
+
+
 ### ⚙️ Order Worker
 - Subscribes to `order_queue`
 - Selects vendor with highest available stock
