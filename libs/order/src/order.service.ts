@@ -4,7 +4,7 @@ import { Repository, DataSource, QueryRunner } from 'typeorm';
 import { StockEntity } from '@app/database/entities/stock.entity';
 import { OrderEntity } from '@app/database/entities/order.entity';
 import { QueueService } from '@app/queue';
-import { CreateOrderRequestDto} from './dto/create-order-request.dto';
+import { CreateOrderRequestDto } from './dto/create-order-request.dto';
 import { IServiceFunctionOptions } from '@app/common/query-runner.service';
 
 @Injectable()
@@ -65,5 +65,10 @@ export class OrderService {
             }
         }
 
+    }
+
+
+    async getOrders() {
+        return await this.orderRepository.find();
     }
 }
